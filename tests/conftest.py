@@ -34,11 +34,17 @@ def runner(app):
     """Using test app, create and return a CLI runner object."""
 
     return app.test_cli_runner()
-
 class AuthActions(object):
     def __init__(self, client):
         self._client = client
 
+<<<<<<< HEAD
+class AuthActions(object):
+    def __init__(self, client):
+        self._client = client
+
+=======
+>>>>>>> 4cc5f360d9ef3fd5f1a567f92fe9a2edeeec9afb
     def login(self, email='teacher@stevenscollege.edu', password='qwerty'):
         return self._client.post(
             '/',
