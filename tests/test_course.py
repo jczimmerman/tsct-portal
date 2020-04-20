@@ -31,11 +31,17 @@ def test_edit(client, auth):
     assert '/home' in response.headers['Location']
     response = client.get('/home')
     assert b'CSET 180'in response.data
+    response = client.get('/6/edit')
+    #make sure teachers cannot edit other teachers' courses
+    assert b'Either this does not exist' in response.data
 def test_delete(client, auth):
     # login to the page
     auth.login()
     response = client.post('/1/delete')
     assert response.headers['Location'] == 'http://localhost/home'
+    #testing failed delete
+    response = client.get('/6/delete')
+    assert b'Method Not Allowed' in response.data
 
 def test_view(client, auth):
     # login to the page
@@ -43,3 +49,4 @@ def test_view(client, auth):
     #get the course by clicking the view button
     response = client.post('/2/view')
     assert b'Course Information' in response.data
+    

@@ -10,6 +10,9 @@ def test_login(client, auth):
     response = auth.login()
     assert response.headers['Location'] == 'http://localhost/home'
 
+    #making sure students can login and go to the correct page
+    response = auth.login(student_username, student_password)
+
 
 @pytest.mark.parametrize(('email', 'password', 'message'), (
     ('a', 'teacher@stevenscollege.edu', b'Incorrect email or password!'),

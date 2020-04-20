@@ -19,32 +19,7 @@ def test_index(client):
     assert response.status_code == 200
     assert b'<h1>TSCT Portal</h1>' in response.data
     assert b'<form method="post">' in response.data
-    assert b'<label for="email">' in response.data
-    assert b'<label for="password">' in response.data
-    assert b'<input type="password" name="password" />' in response.data
-    assert b'<input type="submit" value="Login" />' in response.data
 
-# def test_login(client, username, password):
-#     response = client.post('/', data={'email': 'duck@stevenscollege.edu', 'password': ''})
-#     assert 'http://localhost' == response.headers['Location']
-
-
-
-
-
-# def test_teacher_email(client):
-#     assert client.get('/').status_code == 200
-#     response = client.post(
-#         '/', data={'email': 'duck@stevenscollege.edu', 'password': """
-#         hashed = auth.hash_pass(password[1].tobytes())
-#
-#         cur.execute(
-#             'UPDATE users SET password = %s WHERE id = %s',
-#             (hashed, looney))
-#
-#         con.commit("""}
-#     )
-#     assert 'http://localhost/home' == response.headers['Location']
 
 
 
