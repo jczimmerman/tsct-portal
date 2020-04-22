@@ -36,6 +36,7 @@ def test_edit(client, auth):
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 def test_delete(client, auth):
     # login to the page
     auth.login()
@@ -52,10 +53,18 @@ def test_delete(client, auth):
 #     assert '/home' in response.headers['Location']
 >>>>>>> ed99882b6e5a8add9db424140edb7152cff1cf26
 
+=======
+def test_delete(client, auth):
+    # login to the page
+    auth.login()
+    # click the delete button to remove
+    response = client.post('/course/3/delete')
+    assert '/home' in response.headers['Location']
+>>>>>>> 6cd3795fbc0ec2bb1247aa2f2368f02ea5aa7c4f
 
 def test_view(client, auth):
     # login to the page
     auth.login()
     # get the course by clicking the view button
-    response = client.post('course/1/view')
+    response = client.get('course/1/view')
     assert b'Course Information' in response.data
