@@ -77,10 +77,8 @@ def login_required(view):
 def teacher_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-<<<<<<< HEAD
-        if g.user['role'] != 'teacher' or g.user is None:
+        if g.user['role'] != 'teacher':
             return redirect(url_for('main.student'))
-=======
         if g.user['role'] != 'teacher':
             return redirect(url_for('student.student_view'))
         return view(**kwargs)
