@@ -34,7 +34,7 @@ def login():
             session.clear()
             session['user_id'] = user['id']
             if session['user_id'] == user['id'] and user['role'] == 'student':
-                return redirect(url_for('main.student'))
+                return redirect(url_for('student.student_view'))
             elif session['user_id'] == user['id'] and user['role'] == 'teacher':
                 return redirect(url_for('main.home'))
 
@@ -62,6 +62,7 @@ def load_logged_in_user():
         )
         g.user = cur.fetchone()
         cur.close()
+    cur.close()
 
 
 def login_required(view):
@@ -76,7 +77,21 @@ def login_required(view):
 def teacher_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
+<<<<<<< HEAD
         if g.user['role'] != 'teacher' or g.user is None:
             return redirect(url_for('main.student'))
+=======
+        if g.user['role'] != 'teacher':
+            return redirect(url_for('student.student_view'))
+        return view(**kwargs)
+    return wrapped_view
+
+
+def student_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user['role'] != 'student':
+            return redirect(url_for('main.index'))
+>>>>>>> ed99882b6e5a8add9db424140edb7152cff1cf26
         return view(**kwargs)
     return wrapped_view

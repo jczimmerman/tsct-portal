@@ -1,14 +1,13 @@
 import pytest
 
 
-
 def test_create_course(client, auth):
     # getting the form as a teacher
     auth.login()
-    response = client.get('/create')
+    response = client.get('/course/create')
     assert b'Create New Course' in response.data
     # filling the form and Submit it
-    response = client.post('/create', data={
+    response = client.post('/course/create', data={
         'majors': 'BUSA',
         'new_course': 'MATH 122',
         'course_description': 'Enter description here',
@@ -22,20 +21,21 @@ def test_create_course(client, auth):
 def test_edit(client, auth):
     # getting the form as a teacher
     auth.login()
-    response = client.get('/3/edit')
-    assert b'Edit Courses' in response.data
+    response = client.get('/course/3/edit')
+    assert b'Edit Course' in response.data
     assert b'CSET 180' in response.data
     # update the form the form and Submit it
 
-    response = client.post('/3/edit', data={
+    response = client.post('course/3/edit', data={
         'new_course': 'CSET 180',
-        'course_description': 'This damn software project Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent semper quam et quam fringilla feugiat. Donec at risus efficitur, vehicula risus et, tempor nibh. Vivamus vitae porttitor metus, ac venenatis quam. Pellentesque porttitor malesuada orci iaculis condimentum. Vestibulum sodales, purus sit amet ultricies luctus, leo arcu mattis dui, at ultrices tortor eros sit amet lorem. Duis quis metus fringilla neque ornare ornare. Sed commodo sit amet elit et dictum. Nulla eget mattis ligula. Nulla sodales enim nec leo eleifend, et feugiat felis fermentum. Cras aliquet a magna ac pellentesque. Nulla ultrices bibendum dui tristique facilisis. Nam pellentesque lobortis ultricies. In id pretium quam. Sed facilisis lacinia lectus at tristique.'})
+        'course_description': 'This damn software project'})
     # redirect to home
-    assert '/view' in response.headers['Location']
-    response = client.get('/3/view')
+    assert 'course/3/view' in response.headers['Location']
+    response = client.get('course/3/view')
     assert b'CSET 180'in response.data
 
 
+<<<<<<< HEAD
 def test_delete(client, auth):
     # login to the page
     auth.login()
@@ -44,11 +44,18 @@ def test_delete(client, auth):
     #testing failed delete
     response = client.get('/6/delete')
     assert b'Method Not Allowed' in response.data
+=======
+# def test_delete(client, auth):
+#     # login to the page
+#     auth.login()
+#     response = client.post('/3/delete')
+#     assert '/home' in response.headers['Location']
+>>>>>>> ed99882b6e5a8add9db424140edb7152cff1cf26
 
 
 def test_view(client, auth):
     # login to the page
     auth.login()
     # get the course by clicking the view button
-    response = client.post('/2/view')
+    response = client.post('course/1/view')
     assert b'Course Information' in response.data

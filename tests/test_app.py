@@ -1,6 +1,7 @@
 from portal import create_app
 import pytest
 
+
 def test_config(monkeypatch):
     # Default config
     assert not create_app().testing
