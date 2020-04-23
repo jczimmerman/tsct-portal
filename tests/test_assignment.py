@@ -28,10 +28,7 @@ def test_edit_assignment(client, auth):
     response = client.get('/course/2/session/2/assignments')
     assert b'Magic2' in response.data
 
-# def test_delete_assignment(client, auth):
-#     auth.login()
-#     response = client.post('/3/delete')
-#     assert '/2/assignments' in response.headers['Location']
-#     #failed delete
-#     response = client.get('/6/delete_assignments')
-#     assert b'Method Not Allowed' in response.data
+def test_delete_assignment(client, auth):
+    auth.login()
+    response = client.post('/course/2/session/2/assignment/3/delete')
+    assert '/2/assignments' in response.headers['Location']
