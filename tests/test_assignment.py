@@ -32,3 +32,9 @@ def test_delete_assignment(client, auth):
     auth.login()
     response = client.post('/course/2/session/2/assignment/3/delete')
     assert '/2/assignments' in response.headers['Location']
+    assert b'05-02' not in response.data
+
+# def test_failed_delete(client, auth):
+#     auth.login()
+#     response = client.post('/course/2/session/2/assignment/3/delete')
+#     assert b'You cannot modify this assignment' in response.data
