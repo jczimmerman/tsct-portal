@@ -160,8 +160,9 @@ a {
   border: none;
   margin: 0;
   text-align: left;
-  width: 75%;
-  padding: 20px;
+  width: 80%;
+  margin: 0 10%;
+  padding:20px;
 }
 
 .submit {
@@ -367,7 +368,7 @@ aside {
   color: white;
   text-align: center;
   font-variant: small-caps;
-  width: 15%;
+  width: 22%;
   margin: 10px;
   padding: 5px;
 }
