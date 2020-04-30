@@ -60,7 +60,13 @@ def test_delete(client, auth):
     # click the delete button to remove
     response = client.post('/course/3/delete')
     assert '/home' in response.headers['Location']
+<<<<<<< HEAD
 >>>>>>> 6cd3795fbc0ec2bb1247aa2f2368f02ea5aa7c4f
+=======
+    # make sure the course was removed
+    assert b'CSET 180' not in response.data
+
+>>>>>>> dd174fc58c7ae061fe11dc47f07a0d4b14fd5a6e
 
 def test_view(client, auth):
     # login to the page

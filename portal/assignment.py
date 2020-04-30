@@ -61,6 +61,7 @@ def create_assignment(id, course_id):
         name = request.form['name']
         description = request.form['description']
         due_date = request.form['date']
+        total_points = request.form['total_points']
 
         con = db.get_db()
         cur = con.cursor()
@@ -72,8 +73,30 @@ def create_assignment(id, course_id):
                     (id, name, description, due_date))
         g.db.commit()
 
+        cur.execute("""SELECT assignment_id from assignments
+                    WHERE session_id = %s
+                    AND name =%s
+                    AND description = %s
+                    AND due_date = %s""",
+                    (id, name, description, due_date))
+
+        assignment = cur.fetchone()
+
+        cur.execute("""SELECT roster.student_id FROM roster WHERE session_id = %s""",
+                    (id,))
+        students = cur.fetchall()
+
+        for student in students:
+
+            cur.execute("""INSERT INTO grades (student_id, assignment_id, total_points)
+                        VALUES (%s, %s, %s) """,
+                        (student['student_id'], assignment['assignment_id'], total_points))
+
+            g.db.commit()
+
         cur.close()
         con.close()
+
         return redirect(url_for('assignment.view_assignments', id=id, course_id=course_id))
 
     con.close()
@@ -150,18 +173,17 @@ def edit_assignments(course_id, session_id, id):
 
 @bp.route('/course/<int:course_id>/session/<int:session_id>/assignment/<int:id>/delete', methods=['POST'])
 @login_required
-
+@teacher_required
 def delete_assignments(id, course_id, session_id):
-
     """Deletes any unwanted assignments."""
 
+    assignment = get_assignment(id)
+    assignment_id = assignment['assignment_id']
+    # Query to delete an assignment from the database
     con = db.get_db()
     cur = con.cursor()
-
-    # Query to delete an assignment from the database
-    cur.execute("""
-    DELETE FROM assignments WHERE assignment_id = %s
-    """, (id,))
+    cur.execute("""DELETE FROM assignments WHERE assignment_id = %s
+    """, (assignment_id,))
     g.db.commit()
 
     cur.close()
