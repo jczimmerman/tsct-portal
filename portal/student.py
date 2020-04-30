@@ -8,8 +8,8 @@ bp = Blueprint("student", __name__)
 
 
 @bp.route("/student", methods=['GET'])
-@student_required
 @login_required
+@student_required
 def student_view():
     sessions = []
     user_id = session.get('user_id')
@@ -57,8 +57,8 @@ def assignment_grade(id, session_id, course_id):
 
 
 @bp.route("/student/gradebook", methods=['GET', 'POST'])
-@student_required
 @login_required
+@student_required
 def view_student_gradebook():
 
     user_id = session.get('user_id')
@@ -79,8 +79,8 @@ def view_student_gradebook():
 
 
 @bp.route("/student/gradebook/course/<int:course_id>", methods=['GET', 'POST'])
-@student_required
 @login_required
+@student_required
 def view_grades_by_course(course_id):
 
     user_id = session.get('user_id')
