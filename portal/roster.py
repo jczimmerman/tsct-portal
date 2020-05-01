@@ -7,11 +7,10 @@ from portal.session import get_session
 bp = Blueprint("roster", __name__)
 
 # Route to roster
-@teacher_required
-@login_required
+
 @bp.route("/course/<int:course_id>/session/<int:id>/roster", methods=('GET', 'POST'))
-@teacher_required
 @login_required
+@teacher_required
 def view(id, course_id):
     # session_id = class_session['id']
     bname = ''
@@ -84,7 +83,7 @@ def view(id, course_id):
                 cur.execute('SELECT student_id, session_id FROM roster WHERE student_id = %s AND session_id = %s',
                             (bid, id))
                 matching = cur.fetchall()
-                
+
                 if matching != []:
                     message = "student <<{}>> has been deleted".format(
                         removename)
