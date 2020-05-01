@@ -511,7 +511,7 @@ tbody{
 }
 
 th {
-  font-size: 26px;
+  font-size: 22px;
 }
 
 .th1 {
@@ -554,7 +554,7 @@ th {
   margin: 0;
 }
 
-.th2, .th3, .th4, .th5 {
+.th2, .th3, .th4, .th5, .th6 {
   font-variant: small-caps;
   background-color: white;
 }
@@ -573,6 +573,10 @@ th {
 
 .th5 {
   width: 45%;
+}
+
+th6 {
+  width: 15%;
 }
 
 .assignment-table {
@@ -646,6 +650,11 @@ td  {
 .course_grade {
   padding: 10px;
   margin:10px;
+}
+
+.courses-grade-list {
+
+
 }
 
 .grades-heading {
