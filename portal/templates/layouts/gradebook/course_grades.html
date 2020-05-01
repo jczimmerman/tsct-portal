@@ -19,7 +19,7 @@
         <td>{{course_info['teacher']}}</td>
         <td class="">{{ points_received }}</td>
         <td class="">{{ total_points }}</td>
-        <td class="grade">%{{ current_grade }}</td>
+        <td class="grade">{{ current_grade }}%</td>
       </tr>
     </tbody>
   </table>
@@ -41,7 +41,7 @@
           course_id=course_id) }}">{{assignment_grade['assign_name']}}</a></td>
         <td>{{assignment_grade['earned']}}</td>
         <td>{{assignment_grade['total']}}</td>
-        <td class="grade">%{{assignment_grade['assignment_grade']}}</td>
+        <td class="grade">{{assignment_grade['assignment_grade']}}%</td>
       </tr>
       {% endfor %}
     </tbody>
