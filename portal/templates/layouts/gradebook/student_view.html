@@ -21,7 +21,7 @@
       <td>{{course['class_name']}}</td>
       <td>{{ course['class_session'] }}</td>
       <td>{{ course['teacher_name']}}</td>
-      <td class="grade">%{{ course['total_grade'] }}</td>
+      <td class="grade">{{ course['total_grade'] }}%</td>
       <td class="td-assign-button"><a class="link" href="{{url_for('student.view_grades_by_course',
        course_id=course['course_id'], session_id=course['class_session'])}}">see grades</a></td>
     </tr>
