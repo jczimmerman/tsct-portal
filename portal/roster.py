@@ -7,6 +7,7 @@ from portal.session import get_session
 bp = Blueprint("roster", __name__)
 
 # Route to roster
+
 @bp.route("/course/<int:course_id>/session/<int:id>/roster", methods=('GET', 'POST'))
 @login_required
 @teacher_required
