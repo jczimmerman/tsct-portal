@@ -13,7 +13,7 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Crimson Text', serif;
+  font-family: sans-serif;
   font-weight: 400;
 }
 
@@ -164,6 +164,23 @@ a {
   text-align: left;
   width: 75%;
   padding: 20px;
+}
+
+.teacher_home_form2{
+  background-color: maroon;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  margin: 0;
+  text-align: left;
+  width: 75%;
+  padding: 20px;
+}
+
+.login-label {
+  font-size: 22px;
+  font-variant: small-caps;
 }
 
 .submit {
