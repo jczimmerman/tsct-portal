@@ -19,4 +19,4 @@ def test_config(monkeypatch):
 def test_index(client):
     response = client.get('/')
     assert b'<h1>TSCT Portal</h1>' in response.data
-    assert b'<form method="post" class="teacher_home_form">' in response.data
+    assert b'<form method="post" class="teacher_home_form2">' in response.data
