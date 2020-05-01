@@ -1,7 +1,6 @@
 import pytest
 
-from flask import session
-
+from flask import  session
 
 def test_login(client, auth):
     assert client.get('/').status_code == 200
@@ -9,7 +8,8 @@ def test_login(client, auth):
     assert response.headers['Location'] == 'http://localhost/home'
 
     #making sure students can login and go to the correct page
-    response = auth.login(student_username, student_password)
+    response = auth.student_login()
+    assert response.headers['Location'] == 'http://localhost/student'
 
 
 @pytest.mark.parametrize(('email', 'password', 'message'), (
@@ -19,8 +19,6 @@ def test_login(client, auth):
 def test_login_validate_input(auth, email, password, message):
     response = auth.login(email, password)
     assert message in response.data
-
-
 def test_logout(client, auth):
     auth.login()
 

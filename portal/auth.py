@@ -78,8 +78,6 @@ def teacher_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user['role'] != 'teacher':
-            return redirect(url_for('main.student'))
-        if g.user['role'] != 'teacher':
             return redirect(url_for('student.student_view'))
         return view(**kwargs)
     return wrapped_view
@@ -90,6 +88,5 @@ def student_required(view):
     def wrapped_view(**kwargs):
         if g.user['role'] != 'student':
             return redirect(url_for('main.index'))
->>>>>>> ed99882b6e5a8add9db424140edb7152cff1cf26
         return view(**kwargs)
     return wrapped_view
