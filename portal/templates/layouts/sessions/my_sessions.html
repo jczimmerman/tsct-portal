@@ -25,6 +25,7 @@
     <td class="session-table">{{ session['class_days']}}</td>
     <td class="session-table">{{ session['class_time']}}</td>
     <td class="session-table">{{ session['loca']}}</td>
+      <td class="td-assign-button"><a class="link" href="{{ url_for('gpa.view', id=session['session_id'], course_id=session['course_id']) }}">grades</a></td>
     <td class="td-assign-button"><a class="link" href="{{ url_for('assignment.view_assignments', id=session['session_id'], course_id=session['course_id']) }}">assignments</a></td>
     <td class="td-assign-button"><a class="link" href="{{ url_for('roster.view', id=session['session_id'], course_id=session['course_id']) }}">roster</a></td>
     <td class="td-assign-button"><a class="link" href="{{ url_for('session.session_edit', id=session['session_id'], course_id=session['course_id']) }}">edit</a></td>
